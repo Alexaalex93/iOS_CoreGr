@@ -15,7 +15,7 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
-    var tipoDeDibujoActual = 0
+    var tipoDeDibujoActual = 0 //Cambiamos el valor de esta variable y para cada valor usamos un tipo de coreGraphics
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +40,7 @@ class ViewController: UIViewController {
             //drawPath()
             
             let rectangulo = CGRect(x: 0, y: 0, width: 512, height: 512)
-            contexto.cgContext.setFillColor(UIColor.red.cgColor)
+            contexto.cgContext.setFillColor(UIColor.red.cgColor) //El relleno
             contexto.cgContext.setStrokeColor(UIColor.black.cgColor)
             contexto.cgContext.setLineWidth(10)
             contexto.cgContext.addRect(rectangulo)
@@ -82,9 +82,9 @@ class ViewController: UIViewController {
     func girarCuadrados() {
         let renderer = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
         let img = renderer.image { (ctx) in
-            ctx.cgContext.translateBy(x: 256, y: 256)
-            let rotations = 16
-            let amount = Double.pi / Double(rotations)
+            ctx.cgContext.translateBy(x: 256, y: 256) //Marcamos el punto de rotacion (centro). //En UIKit el eje de giro siempre esta en el centro, en CoreGraphics esta en la esquina superior izquierda
+            let rotations = 64
+            let amount = Double.pi / Double(rotations) //Valor del giro
             for _ in 0..<rotations {
                 ctx.cgContext.rotate(by: CGFloat(amount))
                 ctx.cgContext.addRect(CGRect(x: -128, y: -128, width: 256, height: 256))
